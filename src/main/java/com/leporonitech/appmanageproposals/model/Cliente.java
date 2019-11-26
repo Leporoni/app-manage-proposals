@@ -1,18 +1,11 @@
 package com.leporonitech.appmanageproposals.model;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
@@ -25,25 +18,31 @@ public class Cliente {
 	private Long id;
 
 	@NotNull(message = "Campo concorrente é obrigatório!")
-	@OneToOne
-	private Concorrente concorrente;
+	private List<String> concorrentes;
 
 	@NotNull(message = "CNPJ ou CPF inválido")
 	private String cnpjCpf;
 
 	@NotNull(message = "Campo telefone é obrigatório!")
-	private Set<String> telefones = new HashSet<>();
+	private String telefone;
 
 	@Length(min = 5, max = 100, message = "Email deve conter entre 5 e 100 caracteres!")
 	private String email;
 
-	@NotNull(message = "Campo Ramo de Atividade é obrigatório!")
-	@ManyToOne
-	@JoinColumn(name = "RAMO_ATIVIDADE_ID")
-	private RamoAtividade ramoAtividade;
+	@NotNull(message = "Campo ramo de atividade é obrigatório!")
+	private List<String> ramoAtividade;
 
-	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
-	private List<Proposta> propostas;
+	@NotNull(message = "Campo taxa débito da concorrente é obrigatório!")
+	private Double taxaDebitoConcorrente;
+
+	@NotNull(message = "Campo desconto débito é obrigatório!")
+	private Double descontoDebito;
+
+	@NotNull(message = "Campo taxa crédito da concorrente é obrigatório!")
+	private Double taxaCreditoConcorrente;
+
+	@NotNull(message = "Campo desconto crédito é obrigatório!")
+	private Double descontoCredito;
 
 	public Long getId() {
 		return id;
@@ -53,12 +52,12 @@ public class Cliente {
 		this.id = id;
 	}
 
-	public Concorrente getConcorrente() {
-		return concorrente;
+	public List<String> getConcorrentes() {
+		return concorrentes;
 	}
 
-	public void setConcorrente(Concorrente concorrente) {
-		this.concorrente = concorrente;
+	public void setConcorrentes(List<String> concorrentes) {
+		this.concorrentes = concorrentes;
 	}
 
 	public String getCnpjCpf() {
@@ -69,12 +68,12 @@ public class Cliente {
 		this.cnpjCpf = cnpjCpf;
 	}
 
-	public Set<String> getTelefones() {
-		return telefones;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setTelefones(Set<String> telefones) {
-		this.telefones = telefones;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	public String getEmail() {
@@ -85,20 +84,44 @@ public class Cliente {
 		this.email = email;
 	}
 
-	public RamoAtividade getRamoAtividade() {
+	public List<String> getRamoAtividade() {
 		return ramoAtividade;
 	}
 
-	public void setRamoAtividade(RamoAtividade ramoAtividade) {
+	public void setRamoAtividade(List<String> ramoAtividade) {
 		this.ramoAtividade = ramoAtividade;
 	}
 
-	public List<Proposta> getPropostas() {
-		return propostas;
+	public Double getTaxaDebitoConcorrente() {
+		return taxaDebitoConcorrente;
 	}
 
-	public void setPropostas(List<Proposta> propostas) {
-		this.propostas = propostas;
+	public void setTaxaDebitoConcorrente(Double taxaDebitoConcorrente) {
+		this.taxaDebitoConcorrente = taxaDebitoConcorrente;
+	}
+
+	public Double getDescontoDebito() {
+		return descontoDebito;
+	}
+
+	public void setDescontoDebito(Double descontoDebito) {
+		this.descontoDebito = descontoDebito;
+	}
+
+	public Double getTaxaCreditoConcorrente() {
+		return taxaCreditoConcorrente;
+	}
+
+	public void setTaxaCreditoConcorrente(Double taxaCreditoConcorrente) {
+		this.taxaCreditoConcorrente = taxaCreditoConcorrente;
+	}
+
+	public Double getDescontoCredito() {
+		return descontoCredito;
+	}
+
+	public void setDescontoCredito(Double descontoCredito) {
+		this.descontoCredito = descontoCredito;
 	}
 
 }
