@@ -23,7 +23,7 @@ public class Cliente {
 	private Long id;
 
 	@OneToOne
-	@NotNull(message = "Campo concorrente é obrigatório!")
+	//@NotNull(message = "Campo concorrente é obrigatório!")
 	private Concorrente concorrente;
 
 	@NotNull(message = "CNPJ ou CPF inválido")
@@ -35,7 +35,7 @@ public class Cliente {
 	@Length(min = 5, max = 100, message = "Email deve conter entre 5 e 100 caracteres!")
 	private String email;
 
-	@NotNull(message = "Campo ramo de atividade é obrigatório!")
+	//@NotNull(message = "Campo ramo de atividade é obrigatório!")
 	@ManyToOne
 	@JoinColumn(name = "RAMO_ATIVIDADE_ID")
 	private RamoAtividade ramoAtividade;

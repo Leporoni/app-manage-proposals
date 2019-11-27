@@ -8,4 +8,6 @@ import com.leporonitech.appmanageproposals.model.Cliente;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long>  {
 
+	Cliente findById(Cliente id);
+
 }
